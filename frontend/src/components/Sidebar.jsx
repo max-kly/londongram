@@ -4,7 +4,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="navs">
-                <Link to='feed'>
+                <Link to='feed' className="nav">
                     <HomeIcon />
                     <p>Feed</p>
                 </Link>
