@@ -5,9 +5,7 @@ const communities = areas.map((area) => {
         name: area.area,
         description: `Everything about our lovely ${area.area}: activities, news, events and much more ❤️`,
         slug: createSlug(area.area),
-        status: 'verified',
-        moderator: 1
+        status: 'verified'
     }
 })
-
-console.log(communities)
+module.exports = communities

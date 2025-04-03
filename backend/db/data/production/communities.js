@@ -9,5 +9,4 @@ const communities = areas.map((area) => {
         moderator: 1
     }
 })
-
-console.log(communities)
+module.exports = communities

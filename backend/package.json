@@ -3,13 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "setup-db": "psql -f ./db/setup.sql",
+    "seed-local": "NODE_ENV=test node db/seed.js",
+    "seed-prod": "node db/seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
+  "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "pg": "^8.14.1",
+    "pg-format": "^1.0.4"
   }
 }

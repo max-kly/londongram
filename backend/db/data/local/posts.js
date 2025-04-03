@@ -3,21 +3,132 @@ module.exports = [
         user_id: 3,
         community_id: 1,
         post_content: 'Hey, I\'m new to the area!',
-        post_images: null,
-        dateCreated: new Date('2025-04-01T20:03:34')
+        dateCreated: new Date('2025-04-01T20:03:34'),
     },
     {
         user_id: 1,
         community_id: null,
         post_content: 'Finally, sunny outside, isn\'t it? ☀️',
-        post_images: null,
-        dateCreated: new Date('2025-04-01T20:03:37')
+        dateCreated: new Date('2025-04-01T20:03:37'),
     },
     {
         user_id: 2,
         community_id: null,
         post_content: 'What a picture',
-        post_images: 'https://picsum.photos/400/700',
-        dateCreated: new Date('2025-04-01T20:05:11')
-    }
-]
+        dateCreated: new Date('2025-04-01T20:05:11'),
+    },
+    {
+        user_id: 3,
+        community_id: null,
+        post_content: 'Londongram! Hello, here we go, I am finally here!',
+        dateCreated: new Date('2025-04-02T19:33:34'),
+    },
+    {
+        user_id: 4,
+        community_id: 2,
+        post_content: 'Anyone up for a morning jog tomorrow?',
+        dateCreated: new Date('2025-04-02T08:15:45'),
+    },
+    {
+        user_id: 5,
+        community_id: null,
+        post_content: 'Does anyone know a good coffee place nearby?',
+        dateCreated: new Date('2025-04-02T09:30:21'),
+    },
+    {
+        user_id: 6,
+        community_id: 3,
+        post_content: 'Excited to start my new job next week!',
+        dateCreated: new Date('2025-04-02T10:50:13'),
+    },
+    {
+        user_id: 7,
+        community_id: null,
+        post_content: 'Throwback to last summer. Can’t wait for the holidays!',
+        dateCreated: new Date('2025-04-02T12:11:09'),
+    },
+    {
+        user_id: 8,
+        community_id: 1,
+        post_content: 'Huge sale at the local store. Don’t miss it!',
+        dateCreated: new Date('2025-04-02T14:20:33'),
+    },
+    {
+        user_id: 9,
+        community_id: null,
+        post_content: 'Happy Friday everyone! Any weekend plans?',
+        dateCreated: new Date('2025-04-02T16:25:57'),
+    },
+    {
+        user_id: 10,
+        community_id: 2,
+        post_content: 'Just finished reading an amazing book. Any recommendations?',
+        dateCreated: new Date('2025-04-02T17:45:20'),
+    },
+    {
+        user_id: 11,
+        community_id: null,
+        post_content: 'First day at the gym! Let’s go! 💪',
+        dateCreated: new Date('2025-04-02T18:10:12'),
+    },
+    {
+        user_id: 12,
+        community_id: 3,
+        post_content: 'Loving this city so far! So much to explore.',
+        dateCreated: new Date('2025-04-02T19:02:41'),
+    },
+    {
+        user_id: 13,
+        community_id: null,
+        post_content: 'Binge-watching my favorite show tonight. Who’s with me?',
+        dateCreated: new Date('2025-04-02T20:20:05'),
+    },
+    {
+        user_id: 14,
+        community_id: 2,
+        post_content: 'Looking for a roommate. DM if interested!',
+        dateCreated: new Date('2025-04-02T21:33:50'),
+    },
+    {
+        user_id: 15,
+        community_id: null,
+        post_content: 'Nothing beats a good cup of tea on a rainy day. ☕️',
+        dateCreated: new Date('2025-04-02T22:15:30'),
+    },
+    {
+        user_id: 16,
+        community_id: 1,
+        post_content: 'Shoutout to the barista who made my morning coffee amazing!',
+        dateCreated: new Date('2025-04-02T23:01:12'),
+    },
+    {
+        user_id: 17,
+        community_id: null,
+        post_content: 'Feeling grateful today. Wishing everyone a great day!',
+        dateCreated: new Date('2025-04-03T07:25:47'),
+    },
+    {
+        user_id: 17,
+        community_id: 3,
+        post_content: 'Game night at my place this weekend. Who’s in?',
+        dateCreated: new Date('2025-04-03T08:45:22'),
+    },
+    {
+        user_id: 17,
+        community_id: 2,
+        post_content: 'Cooking something new today. Hope it turns out well!',
+        dateCreated: new Date('2025-04-03T09:55:15'),
+    },
+    {
+        user_id: 17,
+        community_id: null,
+        post_content: 'Can’t believe how fast time is flying! April already?',
+        dateCreated: new Date('2025-04-03T11:12:40'),
+    },
+    {
+        user_id: 1,
+        community_id: null,
+        post_content: 'Good vibes only today! Let’s make it a good one.',
+        dateCreated: new Date('2025-04-03T12:33:18'),
+    },
+];
