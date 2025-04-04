@@ -5,7 +5,7 @@ const dataProduction = require('./data/production/index')
 const { hashPassword } = require('../utils/seed.util')
 const data = process.env.NODE_ENV === 'test' ? dataLocal : dataProduction
 const messages = require('./data/messages')
-const seed = ({ users, areas, communities, moderators, posts, postImages, likes, comments }) => {
+const seed = ({ users, areas, communities, moderators, posts, postImages, likes, comments, subscriptions }) => {
     console.log(messages.start)
     return db.query('DROP TABLE IF EXISTS post_images')
         .then(() => {
@@ -13,6 +13,9 @@ const seed = ({ users, areas, communities, moderators, posts, postImages, likes,
         })
         .then(() => {
             return db.query('DROP TABLE IF EXISTS comments')
+        })
+        .then(() => {
+            return db.query('DROP TABLE IF EXISTS subscriptions')
         })
         .then(() => {
             return db.query('DROP TABLE IF EXISTS posts')
@@ -36,6 +39,7 @@ const seed = ({ users, areas, communities, moderators, posts, postImages, likes,
                 password VARCHAR NOT NULL,
                 full_name VARCHAR NOT NULL,
                 avatar VARCHAR,
+                bio TEXT,
                 date_of_birth DATE NOT NULL,
                 postcode VARCHAR NOT NULL,
                 status VARCHAR NOT NULL
@@ -76,6 +80,18 @@ const seed = ({ users, areas, communities, moderators, posts, postImages, likes,
             )`)
         })
         .then(() => {
+            return db.query(`CREATE TABLE subscriptions (
+                id SERIAL PRIMARY KEY,
+                user_id INT REFERENCES users(id) NOT NULL,
+                followed_user_id INT REFERENCES users(id),
+                followed_community_id INT REFERENCES communities(id),
+                CHECK (
+                    (followed_user_id IS NOT NULL AND followed_community_id IS NULL) OR 
+                    (followed_user_id IS NULL AND followed_community_id IS NOT NULL)
+                )
+            )`)
+        })
+        .then(() => {
             return db.query(`CREATE TABLE comments (
                 id SERIAL PRIMARY KEY,
                 post_id INT REFERENCES posts(id) NOT NULL,
@@ -104,12 +120,13 @@ const seed = ({ users, areas, communities, moderators, posts, postImages, likes,
             )`)
         })
         .then(() => {
-            const seedUsers = format('INSERT INTO users (username, password, full_name, avatar, date_of_birth, postcode, status) VALUES %L',
-                users.map(({ username, password, fullName, avatar, dateOfBirth, postcode, status }) => [
+            const seedUsers = format('INSERT INTO users (username, password, full_name, avatar, bio, date_of_birth, postcode, status) VALUES %L',
+                users.map(({ username, password, fullName, avatar, bio, dateOfBirth, postcode, status }) => [
                     username,
                     hashPassword(password),
                     fullName,
                     avatar,
+                    bio,
                     dateOfBirth,
                     postcode,
                     status
@@ -154,6 +171,14 @@ const seed = ({ users, areas, communities, moderators, posts, postImages, likes,
         })
         .then(() => {
             if (!process.env.NODE_ENV) return
+            const seedSubscriptions = format('INSERT INTO subscriptions (user_id, followed_user_id, followed_community_id) VALUES %L',
+                subscriptions.map(({ user_id, followed_user_id, followed_community_id }) => [
+                    user_id,
+                    followed_user_id,
+                    followed_community_id,
+                ])
+            )
+            const subscriptionsPromise = db.query(seedSubscriptions)
             const seedPostImages = format('INSERT INTO post_images (post_id, image_url) VALUES %L',
                 postImages.map(({ post_id, image_url }) => [
                     post_id,
@@ -172,7 +197,7 @@ const seed = ({ users, areas, communities, moderators, posts, postImages, likes,
                 ])
             )
             const commentsPromise = db.query(seedComments)
-            return Promise.all([postImagesPromise, commentsPromise])
+            return Promise.all([postImagesPromise, commentsPromise, subscriptionsPromise])
                 .then(() => {
                     return db.query(seedLikes)
                 })
